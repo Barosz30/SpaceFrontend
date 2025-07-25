@@ -1,0 +1,16 @@
+FROM node:18-bullseye
+
+# Ustawienie katalogu roboczego
+WORKDIR /app
+
+# Kopiowanie package.json i lockfile
+COPY package.json package-lock.json ./
+
+# Instalacja zależności
+RUN npm ci
+
+# Kopiowanie reszty projektu
+COPY . .
+
+# Uruchomienie dev servera
+CMD ["npm", "run", "dev"]
